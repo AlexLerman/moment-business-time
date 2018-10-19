@@ -508,6 +508,14 @@ describe('moment.business-hours', function () {
             from.workingDiff(to, 'hours', true).should.equal(-16.5);
             to.workingDiff(from, 'hours').should.equal(16);
             to.workingDiff(from, 'hours', true).should.equal(16.5);
+
+            var from = moment('2015-02-23T10:00:00'),
+                to = moment('2015-02-25T05:30:00');
+
+            from.workingDiff(to, 'hours').should.equal(-18);
+            from.workingDiff(to, 'hours', true).should.equal(-18);
+            to.workingDiff(from, 'hours').should.equal(18);
+            to.workingDiff(from, 'hours', true).should.equal(18);
         });
 
         it('returns zero for times on the same night over consecutive days', function () {
