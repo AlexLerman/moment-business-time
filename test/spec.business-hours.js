@@ -492,16 +492,16 @@ describe('moment.business-hours', function () {
         it('handles overnight hours', function () {
             moment.locale('en', {
               workinghours: {
-                  0: ['19:00:00', '28:00:00'],
+                  0: null,
                   1: ['19:00:00', '28:00:00'],
                   2: ['19:00:00', '28:00:00'],
                   3: ['19:00:00', '28:00:00'],
                   4: ['19:00:00', '28:00:00'],
                   5: ['19:00:00', '28:00:00'],
-                  6: ['19:00:00', '28:00:00']
+                  6: null
               }
             });
-            var from = moment('2015-02-23T10:00:00'),
+            var from = moment('2015-02-22T10:00:00'),
                 to = moment('2015-02-25T02:30:00');
 
             from.workingDiff(to, 'hours').should.equal(-16);

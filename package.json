@@ -1,6 +1,6 @@
 {
-  "name": "moment-business-time",
-  "version": "0.7.1",
+  "name": "moment-business-time-overnight",
+  "version": "0.7.2",
   "description": "Query and manipulate moment objects within the context of business/working hours",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lennym/moment-business-time.git"
+    "url": "https://github.com/AlexLerman/moment-business-time.git"
   },
   "author": "Leonard Martin<hello@lennym.co.uk>",
   "license": "MIT",
