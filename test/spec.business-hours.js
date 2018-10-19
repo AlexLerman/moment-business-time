@@ -60,6 +60,25 @@ describe('moment.business-hours', function () {
 
     });
 
+    it('considers working time inclusive', function(){
+            moment.locale('en', {
+                workinghours: {
+                    0: ['19:00:00', '28:00:00'],
+                    1: ['19:00:00', '28:00:00'],
+                    2: ['19:00:00', '28:00:00'],
+                    3: ['19:00:00', '28:00:00'],
+                    4: ['19:00:00', '28:00:00'],
+                    5: ['19:00:00', '28:00:00'],
+                    6: ['19:00:00', '28:00:00']
+                }
+            });
+
+         moment('2017-06-26 09:00:00').isWorkingTime().should.be.false;
+         moment('2017-06-26 20:00:00').isWorkingTime().should.be.true;
+         moment('2017-06-26 03:00:00').isWorkingTime().should.be.true;
+
+    });
+
     describe('nextWorkingDay', function () {
 
         it('returns the next working day', function () {
@@ -111,7 +130,7 @@ describe('moment.business-hours', function () {
                 moment(now).addWorkingTime(-1, 'day').format(date).should.equal('2015-02-25');
             });
 
-            
+
 
 
 
@@ -468,6 +487,27 @@ describe('moment.business-hours', function () {
             from.workingDiff(to, 'hours', true).should.equal(-22.5);
             to.workingDiff(from, 'hours').should.equal(22);
             to.workingDiff(from, 'hours', true).should.equal(22.5);
+        });
+
+        it('handles overnight hours', function () {
+            moment.locale('en', {
+              workinghours: {
+                  0: ['19:00:00', '28:00:00'],
+                  1: ['19:00:00', '28:00:00'],
+                  2: ['19:00:00', '28:00:00'],
+                  3: ['19:00:00', '28:00:00'],
+                  4: ['19:00:00', '28:00:00'],
+                  5: ['19:00:00', '28:00:00'],
+                  6: ['19:00:00', '28:00:00']
+              }
+            });
+            var from = moment('2015-02-23T10:00:00'),
+                to = moment('2015-02-25T02:30:00');
+
+            from.workingDiff(to, 'hours').should.equal(-16);
+            from.workingDiff(to, 'hours', true).should.equal(-16.5);
+            to.workingDiff(from, 'hours').should.equal(16);
+            to.workingDiff(from, 'hours', true).should.equal(16.5);
         });
 
         it('returns zero for times on the same night over consecutive days', function () {
