@@ -197,6 +197,20 @@ moment('2017-12-25').isWorkingDay() // false
 moment('2018-12-25').isWorkingDay() // false
 ```
 
+## Overnight hours
+```javascript
+    workinghours: {
+        0: null,
+        1: ['09:30:00', '28:00:00'],
+        2: ['09:30:00', '28:00:00'],
+        3: ['09:30:00', '28:00:00'],
+        4: ['09:30:00', '28:00:00'],
+        5: ['09:30:00', '28:00:00'],
+        6: null
+    }
+```
+`28:00:00 = 4:00 AM`  
+
 ## Running tests
 
 ```
