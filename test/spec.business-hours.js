@@ -526,6 +526,8 @@ describe('moment.business-hours', function () {
                   6: null
               }
             });
+
+
             var from = moment('2015-02-22T10:00:00'),
                 to = moment('2015-02-25T02:30:00');
 
@@ -534,13 +536,21 @@ describe('moment.business-hours', function () {
             to.workingDiff(from, 'hours').should.equal(16);
             to.workingDiff(from, 'hours', true).should.equal(16.5);
 
-            // var from = moment('2015-02-23T10:00:00'),
-            //     to = moment('2015-02-25T05:30:00');
-            //
-            // from.workingDiff(to, 'hours').should.equal(-18);
-            // from.workingDiff(to, 'hours', true).should.equal(-18);
-            // to.workingDiff(from, 'hours').should.equal(18);
-            // to.workingDiff(from, 'hours', true).should.equal(18);
+            var from = moment('2015-02-23T10:00:00'),
+                to = moment('2015-02-25T05:30:00');
+
+            from.workingDiff(to, 'hours').should.equal(-18);
+            from.workingDiff(to, 'hours', true).should.equal(-18);
+            to.workingDiff(from, 'hours').should.equal(18);
+            to.workingDiff(from, 'hours', true).should.equal(18);
+
+            var from = moment('2015-02-24T02:00:00'),
+                to = moment('2015-02-24T05:30:00');
+            to.workingDiff(from, 'hours').should.equal(2);
+            to.workingDiff(from, 'hours', true).should.equal(2);
+            from.workingDiff(to, 'hours').should.equal(-2);
+            from.workingDiff(to, 'hours', true).should.equal(-2);
+
         });
 
 
